@@ -2,2146 +2,683 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sena Casa e Pintura – Materiais de Construção em Mauá, SP</title>
-    <meta name="description"
-        content="Sena Casa e Pintura: depósito de materiais de construção no Parque São Vicente, Mauá-SP. Único do bairro com manipulação de tintas na hora. +5.000 cores. Atendimento humanizado desde 2017." />
-    <meta property="og:title" content="Sena Casa e Pintura – Materiais de Construção em Mauá, SP" />
-    <meta property="og:description"
-        content="O único depósito do Parque São Vicente com máquina de tinta na hora. +5.000 cores. Avaliação 4,8 no Google." />
-    <meta property="og:type" content="website" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&family=Oswald:wght@500;700&display=swap"
-        rel="stylesheet" />
-
-    <style>
-        /* ============================================================
-       RESET & VARIÁVEIS GLOBAIS
-    ============================================================ */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --blue: #00509D;
-            --blue-dk: #003f7d;
-            --orange: #FF8C00;
-            --orange-lt: #ffaa33;
-            --white: #FFFFFF;
-            --off-white: #F8F5F0;
-            --gray: #6b7280;
-            --gray-lt: #e5e7eb;
-            --dark: #1a1a2e;
-            --radius: 14px;
-            --shadow: 0 4px 24px rgba(0, 0, 0, .12);
-            --trans: .3s ease;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background: var(--off-white);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        /* ---- SCROLLBAR ---- */
-        ::-webkit-scrollbar {
-            width: 8px;
-            background: var(--blue-dk);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--orange);
-            border-radius: 8px;
-        }
-
-        /* ---- SCROLL REVEAL ---- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity .7s ease, transform .7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ============================================================
-       HEADER / NAV
-    ============================================================ */
-        #header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 18px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: padding var(--trans), background var(--trans), box-shadow var(--trans);
-        }
-
-        #header.scrolled {
-            padding: 10px 5%;
-            background: rgba(0, 38, 77, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 2px 24px rgba(0, 0, 0, .3);
-        }
-
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--orange);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: logoPulse 3s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-
-        @keyframes logoPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 140, 0, .5);
-            }
-
-            50% {
-                box-shadow: 0 0 0 10px rgba(255, 140, 0, 0);
-            }
-        }
-
-        .logo-text {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem;
-            color: #fff;
-            line-height: 1.1;
-        }
-
-        .logo-text span {
-            color: var(--orange);
-            display: block;
-            font-size: .8rem;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 600;
-        }
-
-        nav {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        nav a {
-            color: rgba(255, 255, 255, .9);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: .9rem;
-            position: relative;
-            letter-spacing: .3px;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--orange);
-            transition: width var(--trans);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            background: var(--orange);
-            color: #fff !important;
-            padding: 8px 18px;
-            border-radius: 50px;
-            transition: transform var(--trans), box-shadow var(--trans) !important;
-        }
-
-        .nav-cta::after {
-            display: none !important;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 140, 0, .4);
-        }
-
-        /* hamburger */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1100;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 26px;
-            height: 2px;
-            background: #fff;
-            transition: transform .3s ease, opacity .3s ease;
-        }
-
-        .hamburger.open span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .hamburger.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.open span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        @media(max-width:768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                max-width: 320px;
-                height: 100vh;
-                background: var(--blue-dk);
-                flex-direction: column;
-                justify-content: center;
-                gap: 32px;
-                transition: right .4s ease;
-                z-index: 1050;
-            }
-
-            nav.open {
-                right: 0;
-            }
-
-            nav a {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* ============================================================
-       HERO
-    ============================================================ */
-        #hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #001f45 0%, #00509D 55%, #0a3a6e 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            padding: 100px 5% 60px;
-        }
-
-        /* grid drift */
-        #hero::before {
-            content: '';
-            position: absolute;
-            inset: -50%;
-            width: 200%;
-            height: 200%;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridDrift 20s linear infinite;
-        }
-
-        @keyframes gridDrift {
-            from {
-                transform: translate(0, 0);
-            }
-
-            to {
-                transform: translate(60px, 60px);
-            }
-        }
-
-        /* orbs */
-        .hero-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            pointer-events: none;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            top: -100px;
-            right: -80px;
-            background: radial-gradient(circle, rgba(255, 140, 0, .25) 0%, transparent 70%);
-            animation: orbPulse 6s ease-in-out infinite;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            bottom: 0;
-            left: 5%;
-            background: radial-gradient(circle, rgba(0, 80, 157, .4) 0%, transparent 70%);
-            animation: orbPulse 8s ease-in-out infinite reverse;
-        }
-
-        @keyframes orbPulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: .8;
-            }
-
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-        }
-
-        /* particles container */
-        #particles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 680px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, .12);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, .2);
-            padding: 6px 16px;
-            border-radius: 50px;
-            margin-bottom: 24px;
-            color: rgba(255, 255, 255, .9);
-            font-size: .85rem;
-            font-weight: 700;
-        }
-
-        .badge-dot {
-            width: 8px;
-            height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1
-            }
-
-            50% {
-                opacity: 0
-            }
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            color: #fff;
-            line-height: 1.15;
-            margin-bottom: 20px;
-        }
-
-        .hero-title em {
-            color: var(--orange);
-            font-style: normal;
-        }
-
-        .hero-typing {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: rgba(255, 255, 255, .85);
-            margin-bottom: 32px;
-            min-height: 2em;
-            font-weight: 600;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1.2em;
-            background: var(--orange);
-            margin-left: 2px;
-            vertical-align: middle;
-            animation: cursorBlink .7s ease-in-out infinite;
-        }
-
-        @keyframes cursorBlink {
-
-            0%,
-            100% {
-                opacity: 1
-            }
-
-            50% {
-                opacity: 0
-            }
-        }
-
-        .hero-btns {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: .95rem;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: transform var(--trans), box-shadow var(--trans);
-        }
-
-        .btn:hover {
-            transform: translateY(-4px);
-        }
-
-        .btn-primary {
-            background: var(--orange);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(255, 140, 0, .4);
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 8px 32px rgba(255, 140, 0, .55);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, .5);
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, .1);
-            box-shadow: 0 8px 32px rgba(255, 255, 255, .1);
-        }
-
-        /* ============================================================
-       SOBRE
-    ============================================================ */
-        #sobre {
-            padding: 90px 5%;
-            background: var(--white);
-        }
-
-        .section-label {
-            font-size: .8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            color: var(--blue);
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .section-title em {
-            color: var(--orange);
-            font-style: normal;
-        }
-
-        .sobre-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        @media(max-width:768px) {
-            .sobre-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-        }
-
-        .sobre-visual {
-            background: linear-gradient(135deg, var(--blue) 0%, #0a3a6e 100%);
-            border-radius: var(--radius);
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            min-height: 340px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .sobre-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
-
-        .sobre-year {
-            font-family: 'Oswald', sans-serif;
-            font-size: 5rem;
-            color: rgba(255, 255, 255, .12);
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            line-height: 1;
-        }
-
-        .sobre-badge {
-            display: inline-block;
-            background: var(--orange);
-            color: #fff;
-            font-size: .75rem;
-            font-weight: 800;
-            padding: 4px 14px;
-            border-radius: 50px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .sobre-visual-text {
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-
-        .sobre-visual-text strong {
-            color: var(--orange-lt);
-        }
-
-        .sobre-text p {
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 16px;
-            font-size: .98rem;
-        }
-
-        .sobre-highlights {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 14px 18px;
-            background: var(--off-white);
-            border-radius: 10px;
-            border-left: 4px solid var(--orange);
-        }
-
-        .highlight-icon {
-            font-size: 1.4rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .highlight-item strong {
-            display: block;
-            color: var(--blue);
-            font-size: .92rem;
-        }
-
-        .highlight-item span {
-            color: var(--gray);
-            font-size: .85rem;
-        }
-
-        /* ============================================================
-       PRODUTOS / SERVIÇOS
-    ============================================================ */
-        #produtos {
-            padding: 90px 5%;
-            background: var(--off-white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 32px 28px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform var(--trans), box-shadow var(--trans);
-            transform-style: preserve-3d;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, .15);
-        }
-
-        /* shine */
-        .card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -80%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
-            transform: skewX(-20deg);
-            transition: left .5s ease;
-        }
-
-        .card:hover::after {
-            left: 130%;
-        }
-
-        .card-icon {
-            width: 58px;
-            height: 58px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 18px;
-            font-size: 1.7rem;
-        }
-
-        .card-icon.orange {
-            background: rgba(255, 140, 0, .12);
-        }
-
-        .card-icon.blue {
-            background: rgba(0, 80, 157, .1);
-        }
-
-        .card h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.3rem;
-            color: var(--blue);
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: var(--gray);
-            font-size: .9rem;
-            line-height: 1.7;
-        }
-
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 16px;
-        }
-
-        .tag {
-            font-size: .75rem;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 50px;
-            background: var(--off-white);
-            color: var(--blue);
-            border: 1px solid var(--gray-lt);
-        }
-
-        /* ============================================================
-       ESTATÍSTICAS
-    ============================================================ */
-        #stats {
-            padding: 80px 5%;
-            background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #stats::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .stat-item {}
-
-        .stat-num {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--orange);
-            line-height: 1;
-            display: block;
-        }
-
-        .stat-label {
-            color: rgba(255, 255, 255, .8);
-            font-size: .9rem;
-            font-weight: 600;
-            margin-top: 8px;
-        }
-
-        /* ============================================================
-       AVALIAÇÕES
-    ============================================================ */
-        #avaliacoes {
-            padding: 90px 5%;
-            background: var(--white);
-        }
-
-        .stars-big {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            justify-content: center;
-            margin: 16px 0;
-        }
-
-        .stars-big svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .review-score {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: var(--blue);
-            text-align: center;
-            line-height: 1;
-        }
-
-        .review-count {
-            color: var(--gray);
-            text-align: center;
-            font-size: .9rem;
-            margin-bottom: 40px;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .review-card {
-            background: var(--off-white);
-            border-radius: var(--radius);
-            padding: 24px;
-            border: 1px solid var(--gray-lt);
-            transition: transform var(--trans), box-shadow var(--trans);
-        }
-
-        .review-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-        }
-
-        .review-stars {
-            display: flex;
-            gap: 3px;
-            margin-bottom: 12px;
-        }
-
-        .review-stars svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .review-text {
-            font-size: .9rem;
-            color: var(--dark);
-            line-height: 1.6;
-            margin-bottom: 16px;
-            font-style: italic;
-        }
-
-        .reviewer {
-            font-weight: 700;
-            font-size: .85rem;
-            color: var(--blue);
-        }
-
-        .review-date {
-            font-size: .78rem;
-            color: var(--gray);
-        }
-
-        .google-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .google-badge span {
-            font-size: .85rem;
-            color: var(--gray);
-            font-weight: 600;
-        }
-
-        /* ============================================================
-       CONTATO
-    ============================================================ */
-        #contato {
-            padding: 90px 5%;
-            background: var(--off-white);
-        }
-
-        .contato-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            max-width: 1050px;
-            margin: 0 auto;
-        }
-
-        @media(max-width:768px) {
-            .contato-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .contato-info h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.4rem;
-            color: var(--blue);
-            margin-bottom: 20px;
-        }
-
-        .info-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .info-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: .92rem;
-            color: var(--dark);
-            transition: transform var(--trans);
-            cursor: default;
-        }
-
-        .info-list li:hover {
-            transform: translateX(4px);
-        }
-
-        .info-list li .icon-wrap {
-            width: 38px;
-            height: 38px;
-            background: var(--blue);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .info-list li .icon-wrap svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .info-list li strong {
-            display: block;
-            font-weight: 700;
-            color: var(--blue);
-            font-size: .8rem;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-        }
-
-        .info-list li span {
-            color: var(--gray);
-            font-size: .9rem;
-        }
-
-        .hours-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .hours-row {
-            font-size: .85rem;
-            color: var(--gray);
-        }
-
-        .hours-row strong {
-            color: var(--dark);
-        }
-
-        .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 20px;
-            color: var(--blue);
-            font-weight: 700;
-            font-size: .9rem;
-            text-decoration: none;
-            border-bottom: 2px solid var(--orange);
-            padding-bottom: 2px;
-            transition: color var(--trans);
-        }
-
-        .map-link:hover {
-            color: var(--orange);
-        }
-
-        /* form */
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 700;
-            font-size: .85rem;
-            color: var(--blue);
-            margin-bottom: 6px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid var(--gray-lt);
-            border-radius: 10px;
-            font-family: 'Nunito', sans-serif;
-            font-size: .92rem;
-            color: var(--dark);
-            background: var(--white);
-            outline: none;
-            transition: border-color var(--trans), box-shadow var(--trans), background var(--trans);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(0, 80, 157, .15);
-            background: #f0f6ff;
-        }
-
-        .form-group textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background: var(--orange);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: transform var(--trans), box-shadow var(--trans);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(255, 140, 0, .45);
-        }
-
-        /* ============================================================
-       FAQ
-    ============================================================ */
-        #faq {
-            padding: 90px 5%;
-            background: var(--white);
-        }
-
-        .faq-list {
-            max-width: 780px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        details {
-            background: var(--off-white);
-            border-radius: 12px;
-            border: 1px solid var(--gray-lt);
-            overflow: hidden;
-        }
-
-        details[open] {
-            border-color: var(--blue);
-        }
-
-        summary {
-            list-style: none;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 22px;
-            font-weight: 700;
-            color: var(--blue);
-            font-size: .98rem;
-            user-select: none;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: '+';
-            font-size: 1.4rem;
-            color: var(--orange);
-            font-weight: 900;
-            transition: transform .3s ease;
-            flex-shrink: 0;
-            margin-left: 12px;
-        }
-
-        details[open] summary::after {
-            transform: rotate(45deg);
-        }
-
-        details[open] summary {
-            color: var(--blue-dk);
-        }
-
-        .faq-body {
-            padding: 0 22px 18px;
-            color: var(--gray);
-            line-height: 1.7;
-            font-size: .93rem;
-        }
-
-        /* ============================================================
-       DIFERENCIAIS
-    ============================================================ */
-        #diferenciais {
-            padding: 90px 5%;
-            background: linear-gradient(135deg, var(--blue-dk) 0%, #00509D 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #diferenciais .section-title {
-            color: var(--white);
-        }
-
-        #diferenciais .section-label {
-            color: var(--orange-lt);
-        }
-
-        #diferenciais .section-header p {
-            color: rgba(255, 255, 255, .75);
-            font-size: .97rem;
-            margin-top: 12px;
-        }
-
-        .dif-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .dif-card {
-            background: rgba(255, 255, 255, .08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, .15);
-            border-radius: var(--radius);
-            padding: 30px 24px;
-            text-align: center;
-            transition: transform var(--trans), background var(--trans);
-        }
-
-        .dif-card:hover {
-            transform: translateY(-6px);
-            background: rgba(255, 255, 255, .14);
-        }
-
-        .dif-icon {
-            font-size: 2.2rem;
-            margin-bottom: 14px;
-            display: block;
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-
-        .dif-card:nth-child(2) .dif-icon {
-            animation-delay: .5s;
-        }
-
-        .dif-card:nth-child(3) .dif-icon {
-            animation-delay: 1s;
-        }
-
-        .dif-card:nth-child(4) .dif-icon {
-            animation-delay: 1.5s;
-        }
-
-        @keyframes floatIcon {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-6px);
-            }
-        }
-
-        .dif-card h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.15rem;
-            color: var(--white);
-            margin-bottom: 10px;
-        }
-
-        .dif-card p {
-            color: rgba(255, 255, 255, .75);
-            font-size: .88rem;
-            line-height: 1.6;
-        }
-
-        /* ============================================================
-       FOOTER
-    ============================================================ */
-        footer {
-            background: var(--blue-dk);
-            color: rgba(255, 255, 255, .8);
-        }
-
-        .footer-main {
-            padding: 60px 5% 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .footer-brand .logo-text {
-            font-size: 1.3rem;
-        }
-
-        .footer-brand p {
-            margin-top: 12px;
-            font-size: .88rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, .65);
-        }
-
-        .footer-col h4 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1rem;
-            color: var(--orange);
-            margin-bottom: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .footer-col ul li a {
-            color: rgba(255, 255, 255, .7);
-            text-decoration: none;
-            font-size: .88rem;
-            transition: color var(--trans);
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--orange);
-        }
-
-        .footer-col p {
-            font-size: .88rem;
-            color: rgba(255, 255, 255, .7);
-            line-height: 1.6;
-        }
-
-        .footer-divider {
-            border: none;
-            border-top: 1px solid rgba(255, 255, 255, .1);
-        }
-
-        .footer-credit {
-            background: rgba(0, 0, 0, .2);
-            padding: 14px 5%;
-            text-align: center;
-            font-size: 12px;
-            color: rgba(255, 255, 255, .5);
-        }
-
-        .footer-credit a {
-            color: rgba(255, 200, 60, .8);
-            text-decoration: none;
-        }
-
-        .footer-credit a:hover {
-            text-decoration: underline;
-        }
-
-        /* ============================================================
-       WHATSAPP FLUTUANTE
-    ============================================================ */
-        #wa-float {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 2000;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25D366;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 24px rgba(37, 211, 102, .5);
-            text-decoration: none;
-            animation: waFloat 2.5s ease-in-out infinite;
-        }
-
-        @keyframes waFloat {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        #wa-float svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        #wa-float::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            border: 3px solid rgba(37, 211, 102, .35);
-            animation: waPing 2s ease-out infinite;
-        }
-
-        @keyframes waPing {
-            0% {
-                transform: scale(1);
-                opacity: .8;
-            }
-
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        /* ============================================================
-       UTILITY
-    ============================================================ */
-        .text-center {
-            text-align: center;
-        }
-
-        .mt-small {
-            margin-top: 12px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        @media(max-width:480px) {
-            .hero-btns {
-                flex-direction: column;
-            }
-
-            .btn {
-                justify-content: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sena Casa e Pintura — Depósito de Materiais de Construção em Mauá, SP</title>
+  <meta name="description"
+    content="Sena Casa e Pintura: depósito de materiais de construção e tintas no Parque São Vicente, Mauá-SP. Manipulação de tinta na hora, atendimento nota 10 e 4,8★ no Google. Peça seu orçamento no WhatsApp." />
+  <meta property="og:title" content="Sena Casa e Pintura — Materiais de Construção em Mauá, SP" />
+  <meta property="og:description"
+    content="Depósito de tintas e materiais de construção no Parque São Vicente, Mauá-SP. Atendendo o bairro desde 2017. 4,8★ no Google (269 avaliações)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://gustavoteodoro10.github.io/SenaCasa/assets/img/storefront.jpg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: { DEFAULT: '#2A2620', warm: '#6B6459' },
+            navy: { ink: '#071230', DEFAULT: '#0E2559', light: '#1B3A73', true: '#0B1C4A' },
+            paper: '#EFF1EE',
+            ochre: { DEFAULT: '#C98A2E', light: '#E7B369' },
+            wood: '#8B6F4E',
+            pipe: '#7C93A6',
+            sage: '#5C7A5E',
+            wa: '#25D366',
+          },
+          fontFamily: {
+            display: ['"Big Shoulders Display"', 'sans-serif'],
+            sans: ['Figtree', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Sena Casa e Pintura",
+    "image": "https://gustavoteodoro10.github.io/SenaCasa/assets/img/storefront.jpg",
+    "telephone": "+5511985017648",
+    "email": "senacasaepintura@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Carlos de Campos, 180",
+      "addressLocality": "Mauá",
+      "addressRegion": "SP",
+      "postalCode": "09371-310",
+      "addressCountry": "BR"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "269"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/senacasaepintura.ofc/",
+      "https://www.facebook.com/senacasaepinturapsv/"
+    ],
+    "foundingDate": "2017-08-04"
+  }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #EFF1EE; }
+    section[id], div#topo { scroll-margin-top: 84px; }
+
+    .washi { position: absolute; width: 76px; height: 26px; background: rgba(239,241,238,.9); box-shadow: 0 1px 2px rgba(0,0,0,.15); }
+
+    @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .wa-float { animation: floatY 2.6s ease-in-out infinite; }
+
+    @keyframes waPing { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.6); opacity: 0; } }
+    .wa-ping::before { content:''; position:absolute; inset:-6px; border-radius:9999px; border:2px solid rgba(37,211,102,.5); animation: waPing 2.2s ease-out infinite; }
+
+    .hero-in > * { opacity: 0; transform: translateY(18px); animation: heroUp .7s cubic-bezier(.2,.7,.2,1) forwards; }
+    @keyframes heroUp { to { opacity: 1; transform: translateY(0); } }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(180deg); }
+
+    ::selection { background: #C98A2E; color: #fff; }
+  </style>
 </head>
 
-<body>
+<body class="bg-paper text-ink font-sans antialiased">
 
-    <!-- ============================================================
-       HEADER
-  ============================================================ -->
-    <header id="header">
-        <a href="#hero" class="logo-wrap">
-            <div class="logo-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 22V12L12 3L21 12V22H15V16H9V22H3Z" fill="white" />
-                </svg>
-            </div>
-            <div class="logo-text">
-                Sena Casa<span>e Pintura · Mauá-SP</span>
-            </div>
+  <div id="topo"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-navy-ink">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between py-3">
+      <a href="#topo" class="flex items-center gap-3">
+        <img src="assets/img/logo-white.png" alt="Sena Casa e Pintura" class="h-10 w-10 object-contain" />
+        <span class="font-display font-extrabold text-white text-xl leading-none tracking-wide">SENA <span class="text-ochre">CASA &amp; PINTURA</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#produtos" class="text-sm font-semibold text-white/80 hover:text-white transition-colors">Produtos</a>
+        <a href="#diferenciais" class="text-sm font-semibold text-white/80 hover:text-white transition-colors">Diferenciais</a>
+        <a href="#avaliacoes" class="text-sm font-semibold text-white/80 hover:text-white transition-colors">Avaliações</a>
+        <a href="#localizacao" class="text-sm font-semibold text-white/80 hover:text-white transition-colors">Localização</a>
+        <a href="#faq" class="text-sm font-semibold text-white/80 hover:text-white transition-colors">FAQ</a>
+        <a href="https://wa.me/5511985017648?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento."
+          target="_blank" rel="noopener"
+          class="inline-flex items-center gap-2 bg-wa text-white text-sm font-bold px-5 py-2.5 rounded-md hover:brightness-110 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.122 1.524 5.857L0 24l6.335-1.524A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.375l-.36-.213-3.728.898.913-3.641-.233-.374A9.818 9.818 0 1112 21.818z"/></svg>
+          WhatsApp
         </a>
+      </nav>
 
-        <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
-            <span></span><span></span><span></span>
+      <button id="hamburger" aria-label="Abrir menu" class="lg:hidden flex flex-col gap-1.5 p-2">
+        <span class="block w-6 h-0.5 bg-white transition-transform"></span>
+        <span class="block w-6 h-0.5 bg-white transition-opacity"></span>
+        <span class="block w-6 h-0.5 bg-white transition-transform"></span>
+      </button>
+    </div>
+
+    <nav id="mobile-nav" class="lg:hidden hidden flex-col gap-1 px-5 pb-5 bg-navy-ink border-t border-white/10">
+      <a href="#produtos" class="py-3 text-white/85 font-semibold border-b border-white/10">Produtos</a>
+      <a href="#diferenciais" class="py-3 text-white/85 font-semibold border-b border-white/10">Diferenciais</a>
+      <a href="#avaliacoes" class="py-3 text-white/85 font-semibold border-b border-white/10">Avaliações</a>
+      <a href="#localizacao" class="py-3 text-white/85 font-semibold border-b border-white/10">Localização</a>
+      <a href="#faq" class="py-3 text-white/85 font-semibold border-b border-white/10">FAQ</a>
+      <a href="https://wa.me/5511985017648?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento."
+        target="_blank" rel="noopener"
+        class="mt-4 inline-flex items-center justify-center gap-2 bg-wa text-white font-bold px-5 py-3 rounded-md">
+        Falar no WhatsApp
+      </a>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="relative bg-navy-ink pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 opacity-[0.05]"
+      style="background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);background-size:44px 44px;"></div>
+    <div class="pointer-events-none absolute -right-40 -top-20 w-[520px] h-[520px] rounded-full bg-ochre/10 blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[1.1fr_.9fr] gap-16 items-center">
+      <div class="hero-in">
+        <p style="animation-delay:.05s" class="inline-flex items-center gap-2 text-ochre-light text-sm font-bold tracking-wide mb-6">
+          <span id="status-dot" class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span id="status-text">Verificando horário…</span>
+          <span class="text-white/40">·</span> Parque São Vicente, Mauá-SP
+        </p>
+
+        <h1 style="animation-delay:.12s" class="font-display font-black text-white leading-[0.95] text-[3rem] sm:text-[3.8rem] lg:text-[4.4rem] tracking-tight">
+          A sua melhor<br />escolha na hora<br />de <span class="text-ochre">construir.</span>
+        </h1>
+
+        <p style="animation-delay:.22s" class="mt-7 text-white/70 text-lg max-w-md leading-relaxed">
+          Depósito de tintas e materiais de construção no Parque São Vicente — do jeito que só o
+          <strong class="text-white">Depósito Sena</strong> faz, atendendo o bairro desde 2017.
+        </p>
+
+        <div style="animation-delay:.32s" class="mt-9 flex flex-wrap gap-4">
+          <a href="https://wa.me/5511985017648?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento."
+            target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 bg-wa text-white font-bold px-7 py-4 rounded-md shadow-lg shadow-wa/20 hover:brightness-110 hover:-translate-y-0.5 transition">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.122 1.524 5.857L0 24l6.335-1.524A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.375l-.36-.213-3.728.898.913-3.641-.233-.374A9.818 9.818 0 1112 21.818z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#produtos"
+            class="inline-flex items-center gap-2 border-2 border-white/25 text-white font-bold px-7 py-4 rounded-md hover:bg-white/10 transition">
+            Ver produtos
+          </a>
         </div>
 
-        <nav id="nav">
-            <a href="#sobre">Sobre</a>
-            <a href="#produtos">Produtos</a>
-            <a href="#avaliacoes">Avaliações</a>
-            <a href="#contato">Contato</a>
-            <a href="#faq">FAQ</a>
-            <a href="https://wa.me/5511985017648" class="nav-cta" target="_blank" rel="noopener">
-                WhatsApp
-            </a>
-        </nav>
-    </header>
-
-    <!-- ============================================================
-       HERO
-  ============================================================ -->
-    <section id="hero">
-        <div class="orb-1 hero-orb"></div>
-        <div class="orb-2 hero-orb"></div>
-        <div id="particles"></div>
-
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                📍 Parque São Vicente · Mauá-SP
+        <div style="animation-delay:.4s" class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-white/80 text-sm">
+          <div class="flex items-center gap-1.5">
+            <div class="flex text-ochre-light">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-
-            <h1 class="hero-title">
-                Sua obra começa<br>com a cor <em>certa</em>,<br>na hora certa.
-            </h1>
-
-            <div class="hero-typing">
-                <span id="typed-text"></span><span class="cursor"></span>
-            </div>
-
-            <div class="hero-btns">
-                <a href="https://wa.me/5511985017648?text=Olá!%20Vim%20pelo%20site%20e%20quero%20um%20orçamento."
-                    class="btn btn-primary" target="_blank" rel="noopener">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                        <path
-                            d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.122 1.524 5.857L0 24l6.335-1.524A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.375l-.36-.213-3.728.898.913-3.641-.233-.374A9.818 9.818 0 1112 21.818z"
-                            fill="white" />
-                    </svg>
-                    Falar no WhatsApp
-                </a>
-                <a href="#produtos" class="btn btn-outline">
-                    Ver Produtos &amp; Serviços
-                </a>
-            </div>
+            <strong class="text-white">4,8</strong> (269 avaliações no Google)
+          </div>
+          <div><strong id="anos-bairro" class="text-white">9</strong> anos no Parque São Vicente</div>
+          <div>Tinta manipulada <strong class="text-white">na hora</strong></div>
         </div>
-    </section>
+      </div>
 
-    <!-- ============================================================
-       SOBRE
-  ============================================================ -->
-    <section id="sobre">
-        <div class="sobre-grid">
-
-            <div class="sobre-visual reveal">
-                <div class="sobre-year">2017</div>
-                <span class="sobre-badge">Desde 2017</span>
-                <div class="sobre-visual-text">
-                    <strong>+5.000 cores disponíveis</strong><br>
-                    Manipulação de tinta na hora,<br>única no Parque São Vicente.
-                </div>
-            </div>
-
-            <div class="sobre-text reveal">
-                <p class="section-label">Quem somos</p>
-                <h2 class="section-title">A loja do bairro que<br><em>virou referência</em> em Mauá</h2>
-                <p>Fundada em 4 de agosto de 2017, a Sena Casa e Pintura nasceu com uma missão simples: trazer para o
-                    Parque São Vicente o que só se encontrava nos grandes centros — qualidade, variedade e atendimento
-                    técnico especializado.</p>
-                <p>Hoje, após anos de dedicação, somos o único depósito do bairro com sistema de <strong>manipulação de
-                        tintas na hora</strong>, oferecendo mais de 5.000 opções de cores para que sua reforma saia
-                    exatamente como você imaginou.</p>
-                <p>Aqui você é atendido pelos nossos
-                    <strong>especialistas</strong> — gente que conhece o produto e se importa com o resultado da sua
-                    obra.
-                </p>
-
-                <div class="sobre-highlights">
-                    <div class="highlight-item">
-                        <span class="highlight-icon">🏆</span>
-                        <div>
-                            <strong>Avaliação 4,8 no Google</strong>
-                            <span>269 clientes satisfeitos recomendam a Sena</span>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">🎨</span>
-                        <div>
-                            <strong>Especialista em pintura imobiliária</strong>
-                            <span>Tintas, vernizes, tratamentos e soluções completas</span>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">📍</span>
-                        <div>
-                            <strong>Referência no Parque São Vicente</strong>
-                            <span>Um dos bairros que mais cresce em Mauá-SP</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+      <div class="hero-in relative flex justify-center lg:justify-end" style="animation-delay:.3s">
+        <div class="relative -rotate-2 bg-paper p-3 pb-5 rounded-sm shadow-2xl max-w-[300px]">
+          <img src="assets/img/storefront.jpg" alt="Fachada da loja Sena Casa e Pintura, Rua Carlos de Campos, Parque São Vicente, Mauá-SP"
+            class="w-full h-auto rounded-[2px]" />
+          <p class="mt-3 text-center font-display font-bold text-navy-ink text-sm tracking-wide">NOSSA LOJA · PARQUE SÃO VICENTE</p>
+          <span class="washi -top-3 left-8 rotate-[-6deg]"></span>
+          <span class="washi -bottom-3 right-6 rotate-[5deg]"></span>
         </div>
-    </section>
+        <div class="hidden md:block absolute -left-6 bottom-10 bg-ochre text-navy-ink font-display font-extrabold px-5 py-3 rounded-sm shadow-xl rotate-[-3deg] text-sm leading-tight">
+          ATENDIMENTO<br/>NOTA 10 ★
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ============================================================
-       PRODUTOS / SERVIÇOS
-  ============================================================ -->
-    <section id="produtos">
-        <div class="section-header">
-            <p class="section-label reveal">O que oferecemos</p>
-            <h2 class="section-title reveal">Tudo para sua <em>construção e reforma</em></h2>
-            <p class="reveal" style="color:var(--gray);max-width:520px;margin:0 auto;font-size:.95rem;margin-top:8px;">
-                Do azulejo ao acabamento, da fundação à pintura final — encontre tudo num só lugar, no coração do Parque
-                São Vicente.
-            </p>
+  <!-- ================= DIFERENCIAIS ================= -->
+  <section id="diferenciais" class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="max-w-xl mb-14">
+        <h2 class="font-display font-black text-4xl md:text-5xl text-navy leading-[0.95]">Por que o bairro<br/>confia no Depósito Sena</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-navy/10 border border-navy/10 rounded-sm overflow-hidden">
+        <div class="bg-paper p-7">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0E2559" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+          <h3 class="font-display font-bold text-xl text-navy mt-4">Desde 2017 no bairro</h3>
+          <p class="text-ink-warm text-sm mt-2 leading-relaxed">Fundada em agosto de 2017, a Sena virou referência de vizinho para vizinho no Parque São Vicente.</p>
+        </div>
+        <div class="bg-paper p-7">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="1.8"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          <h3 class="font-display font-bold text-xl text-navy mt-4">Tinta na hora</h3>
+          <p class="text-ink-warm text-sm mt-2 leading-relaxed">Escolha sua cor e a gente manipula a tinta na hora, ali na loja — sem espera pra sua obra começar.</p>
+        </div>
+        <div class="bg-paper p-7">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5C7A5E" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <h3 class="font-display font-bold text-xl text-navy mt-4">Atendimento nota 10</h3>
+          <p class="text-ink-warm text-sm mt-2 leading-relaxed">É a própria vizinhança que diz: atendimento rápido, gente que conhece o produto e se importa com sua obra.</p>
+        </div>
+        <div class="bg-paper p-7">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7C93A6" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+          <h3 class="font-display font-bold text-xl text-navy mt-4">Ponto Mercado Livre</h3>
+          <p class="text-ink-warm text-sm mt-2 leading-relaxed">Também somos ponto de retirada de encomendas do Mercado Livre no Parque São Vicente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRODUTOS ================= -->
+  <section id="produtos" class="py-20 md:py-28 bg-navy-ink">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="max-w-2xl mb-14">
+        <h2 class="font-display font-black text-4xl md:text-5xl text-white leading-[0.95]">Tudo para sua obra,<br/>do alicerce ao acabamento</h2>
+        <p class="text-white/60 mt-5 text-lg">Do cimento à última demão de tinta — cinco frentes de produtos reunidas num só depósito.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-paper rounded-sm overflow-hidden group">
+          <div class="h-3 bg-ochre"></div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-2xl text-navy">Tintas &amp; Pintura</h3>
+            <p class="text-ink-warm text-sm mt-3 leading-relaxed">Tintas brancas e coloridas com manipulação e mistura na hora — escolha sua cor e leve pronta.</p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Tinta látex</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Acrílica</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Manipulação na hora</span>
+            </div>
+          </div>
         </div>
 
-        <div class="cards-grid">
-
-            <div class="card reveal">
-                <div class="card-icon orange">🎨</div>
-                <h3>Pintura Completa</h3>
-                <p>Tintas brancas e coloridas das melhores marcas, manipuladas na hora na nossa exclusiva máquina de
-                    cores. Além de massa corrida, massa acrílica, verniz e seladora para um acabamento perfeito.</p>
-                <div class="card-tags">
-                    <span class="tag">Tinta látex</span>
-                    <span class="tag">Acrílico</span>
-                    <span class="tag">Verniz</span>
-                    <span class="tag">Seladora</span>
-                    <span class="tag">Massa corrida</span>
-                </div>
+        <div class="bg-paper rounded-sm overflow-hidden group">
+          <div class="h-3 bg-navy-true"></div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-2xl text-navy">Materiais de Construção</h3>
+            <p class="text-ink-warm text-sm mt-3 leading-relaxed">Areia, pedra, cimento e argamassa para dar base sólida à sua obra ou reforma.</p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Areia</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Pedra</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Cimento</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Argamassa</span>
             </div>
-
-            <div class="card reveal">
-                <div class="card-icon blue">🏗️</div>
-                <h3>Materiais de Construção</h3>
-                <p>Base sólida para toda obra: areia, pedra, cimento Portland, argamassa e gesso de alta qualidade. Tudo
-                    disponível na quantidade certa para pequenas reformas ou grandes construções.</p>
-                <div class="card-tags">
-                    <span class="tag">Cimento</span>
-                    <span class="tag">Areia</span>
-                    <span class="tag">Argamassa</span>
-                    <span class="tag">Gesso</span>
-                    <span class="tag">Pedra</span>
-                </div>
-            </div>
-
-            <div class="card reveal">
-                <div class="card-icon orange">🔧</div>
-                <h3>Casa & Utilidades</h3>
-                <p>Tudo para manter e melhorar sua casa: itens de hidráulica, elétrica (cabos, tomadas, interruptores),
-                    ferramentas, ferragens e utilidades domésticas para o dia a dia.</p>
-                <div class="card-tags">
-                    <span class="tag">Hidráulica</span>
-                    <span class="tag">Elétrica</span>
-                    <span class="tag">Ferramentas</span>
-                    <span class="tag">Ferragens</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ============================================================
-       ESTATÍSTICAS
-  ============================================================ -->
-    <section id="stats">
-        <div class="stats-grid">
-            <div class="stat-item reveal">
-                <span class="stat-num" data-target="5000" data-suffix="+">0</span>
-                <span class="stat-label">Opções de Cores</span>
-            </div>
-            <div class="stat-item reveal">
-                <span class="stat-num" data-target="269" data-suffix="">0</span>
-                <span class="stat-label">Avaliações no Google</span>
-            </div>
-            <div class="stat-item reveal">
-                <span class="stat-num" data-target="8" data-suffix=" anos">0</span>
-                <span class="stat-label">Servindo Mauá com qualidade</span>
-            </div>
-            <div class="stat-item reveal">
-                <span class="stat-num" data-target="48" data-prefix="" data-suffix="h">0</span>
-                <span class="stat-label">Disponíveis por semana</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-       AVALIAÇÕES
-  ============================================================ -->
-    <section id="avaliacoes">
-        <div class="section-header">
-            <p class="section-label reveal">Nossos clientes falam</p>
-            <h2 class="section-title reveal">O que dizem sobre <em>a Sena</em></h2>
+          </div>
         </div>
 
-        <div class="reveal">
-            <div class="review-score">4,8</div>
-            <div class="stars-big">
-                <svg viewBox="0 0 24 24" fill="#FF8C00">
-                    <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-                <svg viewBox="0 0 24 24" fill="#FF8C00">
-                    <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-                <svg viewBox="0 0 24 24" fill="#FF8C00">
-                    <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-                <svg viewBox="0 0 24 24" fill="#FF8C00">
-                    <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-                <svg viewBox="0 0 24 24" fill="#FF8C00">
-                    <path
-                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
+        <div class="bg-paper rounded-sm overflow-hidden group">
+          <div class="h-3 bg-pipe"></div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-2xl text-navy">Hidráulica &amp; Elétrica</h3>
+            <p class="text-ink-warm text-sm mt-3 leading-relaxed">Registros, conexões e fiação para deixar sua instalação completa do jeito certo.</p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Hidráulica</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Elétrica</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Conexões</span>
             </div>
-            <p class="review-count">Baseado em 269 avaliações no Google · <a
-                    href="https://maps.app.goo.gl/DoiBBPcjVcSdbkoc7" target="_blank"
-                    style="color:var(--blue);font-weight:700;">Ver no Google Maps ↗</a></p>
+          </div>
         </div>
 
-        <div class="reviews-grid">
-
-            <div class="review-card reveal">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                </div>
-                <p class="review-text">"Atendimento excelente! O Fernando me ajudou a escolher a cor certa pra sala.
-                    Fizeram a mistura na hora, saiu perfeito. Nunca precisei ir longe pra resolver isso aqui no bairro."
-                </p>
-                <div class="reviewer">Marcos Oliveira</div>
-                <div class="review-date">Há 2 semanas · Google</div>
+        <div class="bg-paper rounded-sm overflow-hidden group">
+          <div class="h-3 bg-wood"></div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-2xl text-navy">Ferramentas &amp; Ferragens</h3>
+            <p class="text-ink-warm text-sm mt-3 leading-relaxed">Ferramentas, ferragens e miudezas pro reparo do dia a dia ou a reforma inteira.</p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Ferramentas</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Ferragens</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Miudezas</span>
             </div>
-
-            <div class="review-card reveal">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                </div>
-                <p class="review-text">"A Débora me atendeu muito bem! Precisava de uma tinta específica pra quartos das
-                    crianças e ela soube indicar o produto certo. A máquina de cores é incrível — saiu na hora!"</p>
-                <div class="reviewer">Patrícia Santos</div>
-                <div class="review-date">Há 1 mês · Google</div>
-            </div>
-
-            <div class="review-card reveal">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="#FF8C00">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                </div>
-                <p class="review-text">"Comprei cimento, areia e tinta pra reformar o banheiro tudo num lugar só.
-                    Atendimento da Aline foi ótimo, preço justo e entregaram rápido. Virei cliente fiel!"</p>
-                <div class="reviewer">Roberto Carvalho</div>
-                <div class="review-date">Há 3 semanas · Google</div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ============================================================
-       CONTATO
-  ============================================================ -->
-    <section id="contato">
-        <div class="section-header">
-            <p class="section-label reveal">Entre em contato</p>
-            <h2 class="section-title reveal">Estamos prontos para <em>te atender</em></h2>
+          </div>
         </div>
 
-        <div class="contato-grid">
-            <div class="contato-info reveal">
-                <h3>Informações úteis</h3>
-                <ul class="info-list">
-                    <li>
-                        <div class="icon-wrap">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path
-                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.97 1.18 2 2 0 012.96 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <strong>WhatsApp / Telefone</strong>
-                            <span>(11) 98501-7648</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="icon-wrap">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                                <circle cx="12" cy="10" r="3" />
-                            </svg>
-                        </div>
-                        <div>
-                            <strong>Endereço</strong>
-                            <span>Parque São Vicente, Mauá — SP</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="icon-wrap">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <circle cx="12" cy="12" r="10" />
-                                <polyline points="12 6 12 12 16 14" />
-                            </svg>
-                        </div>
-                        <div>
-                            <strong>Horário de Funcionamento</strong>
-                            <div class="hours-grid" style="margin-top:6px;">
-                                <div class="hours-row"><strong>Seg–Sex:</strong></div>
-                                <div class="hours-row">08h às 18h</div>
-                                <div class="hours-row"><strong>Sábado:</strong></div>
-                                <div class="hours-row">08h às 14h</div>
-                                <div class="hours-row"><strong>Domingo:</strong></div>
-                                <div class="hours-row" style="color:#ef4444;">Fechado</div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <a href="https://maps.app.goo.gl/DoiBBPcjVcSdbkoc7" target="_blank" rel="noopener" class="map-link">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    Ver no Google Maps
-                </a>
+        <div class="bg-paper rounded-sm overflow-hidden group">
+          <div class="h-3 bg-sage"></div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-2xl text-navy">Utilidades Domésticas</h3>
+            <p class="text-ink-warm text-sm mt-3 leading-relaxed">Itens pra casa que completam sua compra sem precisar procurar em outra loja.</p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Utilidades</span>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-navy/5 text-navy border border-navy/10">Casa</span>
             </div>
-
-            <div class="reveal">
-                <form id="contact-form" onsubmit="handleFormSubmit(event)">
-                    <div class="form-group">
-                        <label for="nome">Seu nome</label>
-                        <input type="text" id="nome" placeholder="Ex: João Silva" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="whatsapp">WhatsApp</label>
-                        <input type="tel" id="whatsapp" placeholder="(11) 99999-9999" maxlength="15" />
-                    </div>
-                    <div class="form-group">
-                        <label for="assunto">Assunto</label>
-                        <select id="assunto">
-                            <option value="">Selecione um assunto</option>
-                            <option>Orçamento de tintas</option>
-                            <option>Materiais de construção</option>
-                            <option>Hidráulica / Elétrica</option>
-                            <option>Outro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensagem">Mensagem</label>
-                        <textarea id="mensagem"
-                            placeholder="Descreva o que você precisa e entraremos em contato rapidamente..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">
-                        Enviar pelo WhatsApp 💬
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-       FAQ
-  ============================================================ -->
-    <section id="faq">
-        <div class="section-header">
-            <p class="section-label reveal">Dúvidas frequentes</p>
-            <h2 class="section-title reveal">Perguntas que <em>todo mundo faz</em></h2>
+          </div>
         </div>
 
-        <div class="faq-list">
+        <a href="https://wa.me/5511985017648?text=Ol%C3%A1!%20Quero%20saber%20se%20voc%C3%AAs%20t%C3%AAm%20um%20produto%20espec%C3%ADfico."
+          target="_blank" rel="noopener"
+          class="rounded-sm overflow-hidden bg-ochre hover:brightness-105 transition flex flex-col justify-center p-7">
+          <h3 class="font-display font-bold text-2xl text-navy-ink">Não achou o que precisa?</h3>
+          <p class="text-navy-ink/80 text-sm mt-3 leading-relaxed">Chama a gente no WhatsApp e confirma na hora se temos o produto.</p>
+          <span class="inline-flex items-center gap-2 mt-5 font-bold text-navy-ink">Perguntar agora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </div>
 
-            <details class="reveal">
-                <summary>Vocês fazem a mistura de tintas na hora?</summary>
-                <div class="faq-body">Sim! Somos o <strong>único depósito do Parque São Vicente</strong> com sistema de
-                    manipulação de tintas na hora. Com nossa máquina de cores, você escolhe entre mais de 5.000 opções e
-                    a tinta fica pronta em minutos, sem espera e sem necessidade de ir até outra cidade.</div>
-            </details>
+      <p class="text-white/50 text-sm mt-10 max-w-2xl">Trabalhamos com marcas como <strong class="text-white/80">Coral</strong>, <strong class="text-white/80">Brasilux</strong> e <strong class="text-white/80">Quartzolit</strong>, entre outros fornecedores de confiança.</p>
+    </div>
+  </section>
 
-            <details class="reveal">
-                <summary>Quais marcas de tinta vocês trabalham?</summary>
-                <div class="faq-body">Trabalhamos com as principais marcas do mercado, incluindo Suvinil, Coral,
-                    Sherwin-Williams e outras referências. Nossa equipe te ajuda a escolher a melhor opção de
-                    custo-benefício para o seu projeto.</div>
-            </details>
+  <!-- ================= OFERTA / CTA ================= -->
+  <section class="relative py-20 md:py-24 bg-ochre overflow-hidden">
+    <div class="pointer-events-none absolute -left-24 -bottom-24 w-80 h-80 rounded-full bg-navy-ink/10"></div>
+    <div class="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[1.3fr_.7fr] gap-10 items-center">
+      <div>
+        <h2 class="font-display font-black text-4xl md:text-5xl text-navy-ink leading-[0.95]">Por que comprar<br/>no Depósito Sena?</h2>
+        <p class="text-navy-ink/80 mt-5 text-lg max-w-lg leading-relaxed">Peça seu orçamento sem compromisso — é rápido, é no WhatsApp, e você já sai sabendo o que precisa pra sua obra.</p>
+        <ul class="mt-7 space-y-3">
+          <li class="flex items-center gap-3 text-navy-ink font-semibold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>
+            Orçamento sem compromisso, resposta rápida
+          </li>
+          <li class="flex items-center gap-3 text-navy-ink font-semibold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>
+            Tinta manipulada na hora, na cor que você escolher
+          </li>
+          <li class="flex items-center gap-3 text-navy-ink font-semibold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>
+            Atendimento nota 10, direto de quem entende de obra
+          </li>
+        </ul>
+      </div>
+      <div class="flex lg:justify-end">
+        <a href="https://wa.me/5511985017648?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento%20sem%20compromisso."
+          target="_blank" rel="noopener"
+          class="inline-flex items-center gap-3 bg-navy-ink text-white font-display font-bold text-xl px-9 py-6 rounded-sm shadow-2xl hover:-translate-y-1 transition">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.122 1.524 5.857L0 24l6.335-1.524A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.375l-.36-.213-3.728.898.913-3.641-.233-.374A9.818 9.818 0 1112 21.818z"/></svg>
+          Pedir orçamento
+        </a>
+      </div>
+    </div>
+  </section>
 
-            <details class="reveal">
-                <summary>Vocês entregam materiais de construção?</summary>
-                <div class="faq-body">Entre em contato pelo nosso WhatsApp (11) 98501-7648 para verificar
-                    disponibilidade de entrega, área de cobertura e condições. Atendemos no Parque São Vicente e regiões
-                    próximas de Mauá.</div>
-            </details>
-
-            <details class="reveal">
-                <summary>Quais formas de pagamento são aceitas?</summary>
-                <div class="faq-body">Aceitamos dinheiro, PIX, cartões de débito e crédito. Para condições especiais em
-                    compras maiores, converse diretamente com nossa equipe pelo WhatsApp.</div>
-            </details>
-
-            <details class="reveal">
-                <summary>Como saber quanto de tinta preciso para minha parede?</summary>
-                <div class="faq-body">Nossa equipe faz esse cálculo pra você! É só informar as medidas do ambiente
-                    (largura × altura de cada parede) e te indicaremos a quantidade exata, evitando desperdício ou falta
-                    de material no meio da obra.</div>
-            </details>
-
-            <details class="reveal">
-                <summary>Vocês atendem aos sábados?</summary>
-                <div class="faq-body">Sim! Estamos abertos aos sábados das <strong>08h às 14h</strong>. De segunda a
-                    sexta funcionamos das 08h às 18h. Aos domingos ficamos fechados para descanso.</div>
-            </details>
-
+  <!-- ================= AVALIAÇÕES ================= -->
+  <section id="avaliacoes" class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <div class="flex flex-wrap items-end justify-between gap-8 mb-14">
+        <h2 class="font-display font-black text-4xl md:text-5xl text-navy leading-[0.95]">O que dizem sobre<br/>o Depósito Sena</h2>
+        <div class="flex items-center gap-4">
+          <span class="font-display font-black text-6xl text-navy leading-none">4,8</span>
+          <div>
+            <div class="flex text-ochre">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <a href="https://maps.app.goo.gl/DoiBBPcjVcSdbkoc7" target="_blank" rel="noopener" class="text-ink-warm text-sm font-semibold hover:text-navy underline underline-offset-2">269 avaliações no Google ↗</a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ============================================================
-       DIFERENCIAIS
-  ============================================================ -->
-    <section id="diferenciais">
-        <div class="section-header text-center">
-            <p class="section-label reveal">Por que nos escolher?</p>
-            <h2 class="section-title reveal">Nossos <em>diferenciais</em></h2>
-            <p class="reveal">Não somos só mais um depósito. Somos o parceiro completo da sua reforma.</p>
-        </div>
-
-        <div class="dif-grid">
-
-            <div class="dif-card reveal">
-                <span class="dif-icon">🎨</span>
-                <h3>Máquina de Tintas Exclusiva</h3>
-                <p>Único do bairro! Misturamos mais de 5.000 cores na hora, sem espera e sem frustração com a cor
-                    errada.</p>
-            </div>
-
-            <div class="dif-card reveal">
-                <span class="dif-icon">🤝</span>
-                <h3>Atendimento Humanizado</h3>
-                <p>Fernando, Aline e Débora atendem como vizinhos. Orientação técnica real, sem empurrar produto
-                    desnecessário.</p>
-            </div>
-
-            <div class="dif-card reveal">
-                <span class="dif-icon">⚡</span>
-                <h3>Agilidade na Entrega</h3>
-                <p>Você não perde tempo. Compra tudo num só lugar e sai com o que precisa para começar a obra hoje
-                    mesmo.</p>
-            </div>
-
-            <div class="dif-card reveal">
-                <span class="dif-icon">🏅</span>
-                <h3>8 Anos de Confiança</h3>
-                <p>Mais de 269 avaliações com nota 4,8 no Google. A preferência do bairro construída a cada atendimento.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ============================================================
-       FOOTER
-  ============================================================ -->
-    <footer>
-        <div class="footer-main">
-            <div class="footer-brand">
-                <a href="#hero" class="logo-wrap">
-                    <div class="logo-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                            <path d="M3 22V12L12 3L21 12V22H15V16H9V22H3Z" fill="white" />
-                        </svg>
-                    </div>
-                    <div class="logo-text">Sena Casa<span>e Pintura</span></div>
-                </a>
-                <p>O único depósito do Parque São Vicente com manipulação de tintas na hora. Sua reforma merece a cor
-                    certa.</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a href="#sobre">Sobre nós</a></li>
-                    <li><a href="#produtos">Produtos</a></li>
-                    <li><a href="#avaliacoes">Avaliações</a></li>
-                    <li><a href="#faq">Perguntas Frequentes</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Contato</h4>
-                <p>📱 (11) 98501-7648</p>
-                <p style="margin-top:8px;">📍 Parque São Vicente<br>Mauá — SP</p>
-                <p style="margin-top:8px;">
-                    ⏰ Seg–Sex: 08h–18h<br>
-                    Sábado: 08h–14h<br>
-                    <span style="color:#ef4444;">Domingo: Fechado</span>
-                </p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Atendimento</h4>
-                <a href="https://wa.me/5511985017648?text=Olá!%20Vim%20pelo%20site%20e%20quero%20um%20orçamento."
-                    target="_blank" rel="noopener"
-                    style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:10px 18px;border-radius:50px;text-decoration:none;font-weight:800;font-size:.9rem;margin-top:4px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                        <path
-                            d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.122 1.524 5.857L0 24l6.335-1.524A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.375l-.36-.213-3.728.898.913-3.641-.233-.374A9.818 9.818 0 1112 21.818z"
-                            fill="white" />
-                    </svg>
-                    Chamar no WhatsApp
-                </a>
-                <a href="https://maps.app.goo.gl/DoiBBPcjVcSdbkoc7" target="_blank" rel="noopener"
-                    style="display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);text-decoration:none;font-size:.88rem;margin-top:14px;">
-                    📌 Ver no Google Maps
-                </a>
-            </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white border border-navy/10 rounded-sm p-7">
+          <div class="flex text-ochre mb-4">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ink leading-relaxed">"Faço reformas e só compro com eles — atendimento mais rápido e entrega ligeira. Pode confiar, eles são nota 10."</p>
+          <div class="mt-5 pt-4 border-t border-navy/10">
+            <p class="font-bold text-navy text-sm">Denilson Debianchi</p>
+            <p class="text-ink-warm text-xs">Google · há 6 meses</p>
+          </div>
         </div>
 
-        <hr class="footer-divider" />
-
-        <div class="footer-credit">
-            Site desenvolvido por <a href="#" rel="noopener">TeoCode</a> · © 2026 <a href="#" rel="noopener">TeoCode</a>
-            · CNPJ: 41.061.643/0001-22 · (11) 99567-6202
+        <div class="bg-white border border-navy/10 rounded-sm p-7">
+          <div class="flex text-ochre mb-4">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ink leading-relaxed">"Atendimento nota 10, entrega super rápida."</p>
+          <div class="mt-5 pt-4 border-t border-navy/10">
+            <p class="font-bold text-navy text-sm">Adonizete de Oliveira</p>
+            <p class="text-ink-warm text-xs">Guia Local · Google · há 6 meses</p>
+          </div>
         </div>
-    </footer>
 
-    <!-- ============================================================
-       WHATSAPP FLUTUANTE
-  ============================================================ -->
-    <a id="wa-float" href="https://wa.me/5511985017648?text=Olá!%20Vim%20pelo%20site%20e%20quero%20um%20orçamento."
-        target="_blank" rel="noopener" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-            <path
-                d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.122 1.524 5.857L0 24l6.335-1.524A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.375l-.36-.213-3.728.898.913-3.641-.233-.374A9.818 9.818 0 1112 21.818z" />
-        </svg>
-    </a>
+        <div class="bg-white border border-navy/10 rounded-sm p-7">
+          <div class="flex text-ochre mb-4">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ink leading-relaxed">"Atendimento impecável. Entrei na loja com um sonho e saí de lá com a concretização e várias dicas de brinde!"</p>
+          <div class="mt-4 bg-paper rounded-sm p-3 text-xs text-ink-warm leading-relaxed">
+            <strong class="text-navy">Resposta da loja:</strong> "Olá, Danni! Agradecemos a sua avaliação e ficamos muito felizes em saber que você gostou da sua experiência conosco. Esperamos ver você em breve!"
+          </div>
+          <div class="mt-4 pt-4 border-t border-navy/10">
+            <p class="font-bold text-navy text-sm">Danni Jardim</p>
+            <p class="text-ink-warm text-xs">Guia Local · Google · há 1 ano</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ============================================================
-       JAVASCRIPT
-  ============================================================ -->
-    <script>
-        /* ---- HEADER SCROLL ---- */
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 40);
-        });
+  <!-- ================= LOCALIZAÇÃO ================= -->
+  <section id="localizacao" class="py-20 md:py-28 bg-navy-ink">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+      <h2 class="font-display font-black text-4xl md:text-5xl text-white leading-[0.95] mb-14">Venha nos visitar</h2>
 
-        /* ---- HAMBURGER ---- */
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            nav.classList.toggle('open');
-            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-        });
-        nav.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                hamburger.classList.remove('open');
-                nav.classList.remove('open');
-                document.body.style.overflow = '';
-            });
-        });
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="w-11 h-11 rounded-sm bg-ochre flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#071230" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="text-white font-bold">Endereço</p>
+              <p class="text-white/65 text-sm mt-0.5">Rua Carlos de Campos, 180 — Parque São Vicente<br/>Mauá – SP, CEP 09371-310</p>
+              <a href="https://maps.app.goo.gl/DoiBBPcjVcSdbkoc7" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-ochre-light text-sm font-semibold mt-2 hover:underline">Ver rota no Google Maps ↗</a>
+            </div>
+          </div>
 
-        /* ---- TYPING EFFECT ---- */
-        const phrases = [
-            'Mais de 5.000 cores, prontas na hora.',
-            'O único com máquina de tinta do bairro.',
-            'Tinta, cimento, hidráulica — tudo aqui.',
-            'Atendimento de vizinho para vizinho.',
-            'Fundados em 2017, referência em Mauá.'
-        ];
-        let pi = 0, ci = 0, deleting = false;
-        const typedEl = document.getElementById('typed-text');
+          <div class="flex gap-4">
+            <div class="w-11 h-11 rounded-sm bg-ochre flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#071230" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.97 1.18 2 2 0 012.96 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <p class="text-white font-bold">WhatsApp / Telefone</p>
+              <a href="https://wa.me/5511985017648" target="_blank" rel="noopener" class="text-white/65 text-sm mt-0.5 block hover:text-white">(11) 98501-7648</a>
+              <a href="tel:+551127599359" class="text-white/65 text-sm hover:text-white">(11) 2759-9359 (loja)</a>
+            </div>
+          </div>
 
-        function type() {
-            const phrase = phrases[pi];
-            typedEl.textContent = deleting ? phrase.slice(0, ci--) : phrase.slice(0, ci++);
-            if (!deleting && ci > phrase.length) { deleting = true; setTimeout(type, 1800); return; }
-            if (deleting && ci < 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 400); return; }
-            setTimeout(type, deleting ? 45 : 75);
-        }
-        type();
+          <div class="flex gap-4">
+            <div class="w-11 h-11 rounded-sm bg-ochre flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#071230" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
+            </div>
+            <div>
+              <p class="text-white font-bold">E-mail</p>
+              <a href="mailto:senacasaepintura@gmail.com" class="text-white/65 text-sm mt-0.5 block hover:text-white">senacasaepintura@gmail.com</a>
+            </div>
+          </div>
 
-        /* ---- SCROLL REVEAL ---- */
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObs = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.transitionDelay = (i % 4) * 100 + 'ms';
-                    entry.target.classList.add('visible');
-                    revealObs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12 });
-        reveals.forEach(el => revealObs.observe(el));
+          <div class="flex gap-4">
+            <div class="w-11 h-11 rounded-sm bg-ochre flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#071230" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="w-full">
+              <p class="text-white font-bold mb-2">Horário de funcionamento</p>
+              <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-white/65 max-w-xs">
+                <span>Segunda a sexta</span><span class="text-white font-semibold">08h – 18h</span>
+                <span>Sábado</span><span class="text-white font-semibold">08h – 14h</span>
+                <span>Domingo</span><span class="text-red-400 font-semibold">Fechado</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        /* ---- ANIMATED COUNTERS ---- */
-        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-        const counters = document.querySelectorAll('.stat-num');
-        const counterObs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                const el = entry.target;
-                const target = parseInt(el.dataset.target);
-                const suffix = el.dataset.suffix || '';
-                const duration = 1800;
-                const start = performance.now();
-                function step(now) {
-                    const elapsed = now - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const val = Math.round(easeOut(progress) * target);
-                    el.textContent = val.toLocaleString('pt-BR') + suffix;
-                    if (progress < 1) requestAnimationFrame(step);
-                    else el.textContent = target.toLocaleString('pt-BR') + suffix;
-                }
-                requestAnimationFrame(step);
-                counterObs.unobserve(el);
-            });
-        }, { threshold: 0.5 });
-        counters.forEach(el => counterObs.observe(el));
+        <div class="rounded-sm overflow-hidden border border-white/10 min-h-[340px]">
+          <iframe
+            src="https://www.google.com/maps?q=Rua+Carlos+de+Campos,+180+-+Parque+Sao+Vicente,+Maua+-+SP,+09371-310&output=embed"
+            class="w-full h-full min-h-[340px]" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Localização da Sena Casa e Pintura"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        /* ---- 3D TILT ON CARDS ---- */
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                const rx = -(y / rect.height) * 10;
-                const ry = (x / rect.width) * 10;
-                card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
+  <!-- ================= FAQ ================= -->
+  <section id="faq" class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-5 md:px-8">
+      <h2 class="font-display font-black text-4xl md:text-5xl text-navy leading-[0.95] mb-12">Perguntas frequentes</h2>
 
-        /* ---- HERO PARTICLES ---- */
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const p = document.createElement('div');
-            const size = Math.random() * 5 + 2;
-            Object.assign(p.style, {
-                position: 'absolute',
-                width: size + 'px',
-                height: size + 'px',
-                borderRadius: '50%',
-                background: `rgba(255,140,0,${Math.random() * 0.4 + 0.1})`,
-                left: Math.random() * 100 + '%',
-                top: Math.random() * 100 + '%',
-                animation: `particleFloat ${Math.random() * 6 + 4}s ease-in-out ${Math.random() * 4}s infinite alternate`,
-                pointerEvents: 'none'
-            });
-            particlesContainer.appendChild(p);
-        }
-        const style = document.createElement('style');
-        style.textContent = `
-      @keyframes particleFloat {
-        from { transform: translateY(0) translateX(0) scale(1); opacity:.6; }
-        to   { transform: translateY(-40px) translateX(${Math.random() > .5 ? '' : '-'}20px) scale(1.3); opacity:.2; }
-      }
-    `;
-        document.head.appendChild(style);
+      <div class="space-y-3">
+        <details class="group bg-white border border-navy/10 rounded-sm" open>
+          <summary class="cursor-pointer flex items-center justify-between gap-4 p-5 font-bold text-navy">
+            Vocês fazem manipulação de tinta na hora?
+            <svg class="chev flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-ink-warm text-sm leading-relaxed">Sim! É só escolher a cor no catálogo que a tinta é preparada na hora, ali na loja — sem esperar dias pra sua obra andar.</p>
+        </details>
 
-        /* ---- WHATSAPP MASK ---- */
-        const waInput = document.getElementById('whatsapp');
-        if (waInput) {
-            waInput.addEventListener('input', function () {
-                let v = this.value.replace(/\D/g, '').slice(0, 11);
-                if (v.length > 6) v = '(' + v.slice(0, 2) + ') ' + v.slice(2, 7) + '-' + v.slice(7);
-                else if (v.length > 2) v = '(' + v.slice(0, 2) + ') ' + v.slice(2);
-                else if (v.length) v = '(' + v;
-                this.value = v;
-            });
-        }
+        <details class="group bg-white border border-navy/10 rounded-sm">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 p-5 font-bold text-navy">
+            Vocês fazem entrega?
+            <svg class="chev flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-ink-warm text-sm leading-relaxed">Sim, trabalhamos com entrega. Fala com a gente pelo WhatsApp pra confirmar prazo e condições para o seu endereço.</p>
+        </details>
 
-        /* ---- FORM SUBMIT → WHATSAPP ---- */
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const nome = document.getElementById('nome').value;
-            const wa = document.getElementById('whatsapp').value;
-            const assunto = document.getElementById('assunto').value;
-            const msg = document.getElementById('mensagem').value;
-            const text = encodeURIComponent(
-                `Olá! Meu nome é ${nome}.\n` +
-                (wa ? `WhatsApp: ${wa}\n` : '') +
-                (assunto ? `Assunto: ${assunto}\n` : '') +
-                (msg ? `\n${msg}` : '')
-            );
-            window.open(`https://wa.me/5511985017648?text=${text}`, '_blank');
-        }
-    </script>
+        <details class="group bg-white border border-navy/10 rounded-sm">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 p-5 font-bold text-navy">
+            Vocês atendem aos sábados?
+            <svg class="chev flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-ink-warm text-sm leading-relaxed">Sim! Segunda a sexta das 8h às 18h e aos sábados das 8h às 14h. Aos domingos ficamos fechados para descanso.</p>
+        </details>
+
+        <details class="group bg-white border border-navy/10 rounded-sm">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 p-5 font-bold text-navy">
+            Posso retirar encomendas do Mercado Livre na loja?
+            <svg class="chev flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-ink-warm text-sm leading-relaxed">Sim, somos ponto de retirada Mercado Livre aqui no Parque São Vicente.</p>
+        </details>
+
+        <details class="group bg-white border border-navy/10 rounded-sm">
+          <summary class="cursor-pointer flex items-center justify-between gap-4 p-5 font-bold text-navy">
+            Como peço um orçamento?
+            <svg class="chev flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="px-5 pb-5 text-ink-warm text-sm leading-relaxed">O jeito mais rápido é chamar a gente no WhatsApp — conta o que você precisa que a gente te responde na hora.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-navy-ink pt-16 pb-0">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-[1.3fr_1fr_1fr] gap-12 pb-12">
+      <div>
+        <a href="#topo" class="flex items-center gap-3">
+          <img src="assets/img/logo-white.png" alt="Sena Casa e Pintura" class="h-11 w-11 object-contain" />
+          <span class="font-display font-extrabold text-white text-xl tracking-wide">SENA CASA &amp; PINTURA</span>
+        </a>
+        <p class="text-white/55 text-sm mt-4 max-w-xs leading-relaxed">Depósito de materiais de construção e tintas no Parque São Vicente, Mauá-SP. Atendendo o bairro desde 2017.</p>
+
+        <div class="flex items-center gap-3 mt-6">
+          <a href="https://www.instagram.com/senacasaepintura.ofc/" target="_blank" rel="noopener" aria-label="Instagram"
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-ochre hover:text-navy-ink text-white transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.94 3.9 2.4 7.15 2.27 8.42 2.21 8.8 2.2 12 2.2zM12 0C8.74 0 8.33.01 7.05.07c-4.35.2-6.78 2.62-6.98 6.98C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 110-8 4 4 0 010 8zm6.41-10.85a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/senacasaepinturapsv/" target="_blank" rel="noopener" aria-label="Facebook"
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-ochre hover:text-navy-ink text-white transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-ochre-light font-bold text-sm uppercase tracking-wider mb-4">Navegação</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#produtos" class="text-white/65 hover:text-white transition-colors">Produtos</a></li>
+          <li><a href="#diferenciais" class="text-white/65 hover:text-white transition-colors">Diferenciais</a></li>
+          <li><a href="#avaliacoes" class="text-white/65 hover:text-white transition-colors">Avaliações</a></li>
+          <li><a href="#localizacao" class="text-white/65 hover:text-white transition-colors">Localização</a></li>
+          <li><a href="#faq" class="text-white/65 hover:text-white transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-ochre-light font-bold text-sm uppercase tracking-wider mb-4">Contato</p>
+        <ul class="space-y-2.5 text-sm text-white/65">
+          <li><a href="https://wa.me/5511985017648" target="_blank" rel="noopener" class="hover:text-white transition-colors">(11) 98501-7648</a></li>
+          <li>Rua Carlos de Campos, 180<br/>Parque São Vicente, Mauá – SP</li>
+          <li><a href="mailto:senacasaepintura@gmail.com" class="hover:text-white transition-colors">senacasaepintura@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 py-6 px-5 text-center">
+      <p class="text-white/45 text-sm">© 2026 Sena Casa e Pintura - Todos os direitos reservados.</p>
+    </div>
+    <div class="bg-black/25 py-4 px-5 text-center">
+      <p class="text-white/40 text-xs">Site desenvolvido por TeoCode · © 2026 TeoCode</p>
+    </div>
+  </footer>
+
+  <!-- ================= WHATSAPP FLUTUANTE ================= -->
+  <a href="https://wa.me/5511985017648?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento."
+    target="_blank" rel="noopener" aria-label="Falar no WhatsApp"
+    class="wa-float wa-ping fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-wa shadow-2xl shadow-wa/40 flex items-center justify-center">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.553 4.122 1.524 5.857L0 24l6.335-1.524A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.375l-.36-.213-3.728.898.913-3.641-.233-.374A9.818 9.818 0 1112 21.818z"/></svg>
+  </a>
+
+  <script>
+    // Header shadow on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('shadow-xl', window.scrollY > 10);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const isOpen = !mobileNav.classList.contains('hidden');
+      mobileNav.classList.toggle('hidden');
+      mobileNav.classList.toggle('flex');
+      hamburger.children[0].style.transform = isOpen ? '' : 'translateY(6.5px) rotate(45deg)';
+      hamburger.children[1].style.opacity = isOpen ? '1' : '0';
+      hamburger.children[2].style.transform = isOpen ? '' : 'translateY(-6.5px) rotate(-45deg)';
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.add('hidden');
+      mobileNav.classList.remove('flex');
+      hamburger.children[0].style.transform = '';
+      hamburger.children[1].style.opacity = '1';
+      hamburger.children[2].style.transform = '';
+    }));
+
+    // Anos no bairro (calculado a partir da fundação real: 04/08/2017)
+    const anosEl = document.getElementById('anos-bairro');
+    const fundacao = new Date('2017-08-04T00:00:00-03:00');
+    const hoje = new Date();
+    let anos = hoje.getFullYear() - fundacao.getFullYear();
+    if (hoje.getMonth() < fundacao.getMonth() || (hoje.getMonth() === fundacao.getMonth() && hoje.getDate() < fundacao.getDate())) anos--;
+    anosEl.textContent = anos;
+
+    // Status aberto/fechado com base no horário real da loja (America/Sao_Paulo)
+    (function () {
+      const statusText = document.getElementById('status-text');
+      const statusDot = document.getElementById('status-dot');
+      const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+      const day = now.getDay(); // 0 dom .. 6 sáb
+      const minutes = now.getHours() * 60 + now.getMinutes();
+      let open = false, msg = 'Fechado agora';
+
+      if (day >= 1 && day <= 5 && minutes >= 8 * 60 && minutes < 18 * 60) { open = true; msg = 'Aberto agora · fecha às 18h'; }
+      else if (day === 6 && minutes >= 8 * 60 && minutes < 14 * 60) { open = true; msg = 'Aberto agora · fecha às 14h'; }
+      else if (day === 0) { msg = 'Fechado hoje · abrimos segunda às 8h'; }
+      else if (day >= 1 && day <= 5) { msg = minutes < 8 * 60 ? 'Fechado · abrimos às 8h' : 'Fechado · abrimos amanhã às 8h'; }
+      else if (day === 6) { msg = minutes < 8 * 60 ? 'Fechado · abrimos às 8h' : 'Fechado até segunda às 8h'; }
+
+      statusText.textContent = msg;
+      statusDot.className = 'w-2 h-2 rounded-full ' + (open ? 'bg-emerald-400' : 'bg-red-400');
+    })();
+
+    // Reveal de títulos de seção
+    const reveals = document.querySelectorAll('section h2');
+    reveals.forEach(el => el.classList.add('reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => io.observe(el));
+  </script>
 
 </body>
-
 </html>
